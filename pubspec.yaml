@@ -21,21 +21,26 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  sqflite: ^1.3.0
+  path_provider: ^1.3.0
+  intl: ^0.16.1
   flutter:
     sdk: flutter
+
 
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-
+  flutter_svg: ^0.19.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
   http: any
   shared_preferences: any
   fluttertoast: ^3.1.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -46,6 +51,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/Hamburger.svg
+    - assets/icons/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

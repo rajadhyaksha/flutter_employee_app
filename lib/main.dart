@@ -1,7 +1,11 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_employee_app/Constant/Constant.dart';
+import 'package:flutter_employee_app/home.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -35,35 +39,52 @@ class _MainPageState extends State<MainPage> {
   @override
   void initState() {
     super.initState();
-    checkLoginStatus();
+    startTime();
   }
 
   checkLoginStatus() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    if(sharedPreferences.getString("token") == null) {
+    if(sharedPreferences.getInt(INSTALLATION_ID) == null) {
       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => LoginPage()), (Route<dynamic> route) => false);
+    }else{
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => home()), (Route<dynamic> route) => false);
+
     }
+  }
+
+  startTime() async {
+    var _duration = new Duration(seconds: 2);
+    return new Timer(_duration, checkLoginStatus);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Employee App", style: TextStyle(color: Colors.white)),
-        actions: <Widget>[
-          FlatButton(
-            onPressed: () {
-              sharedPreferences.clear();
-              sharedPreferences.commit();
-              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => LoginPage()), (Route<dynamic> route) => false);
-            },
-            child: Text("Log Out", style: TextStyle(color: Colors.white)),
-          ),
-        ],
-      ),
-      body: Center(child: Text("Main Page")),
-      drawer: Drawer(),
+      backgroundColor: Colors.amber[700],
+       body: Container(
+         child:Column(
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: <Widget>[
+             Container(
+               alignment: Alignment.center,
+               child: Center(
+                 child: Image.asset("assets/images/logo.png"),
+               ),
+             ),
+             Text("Employee App",
+                 style: TextStyle(
+                     color: Colors.black,
+                     fontSize: 20.0,
+                     fontWeight: FontWeight.bold),textAlign: TextAlign.center),
+
+
+           ],
+       )
+    )
     );
   }
+
+
+
 
 }
