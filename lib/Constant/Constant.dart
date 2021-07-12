@@ -85,11 +85,11 @@ String DEPT_NAME = 'DEPT_NAME',
         ACCEPT = 'Accept',
         FORWARD = 'Forward',
         GUARD = 'Guard',
-    ENDMEETING = 'meet_end_time',
-    REASON1 = 'I am currently away',
-    REASON2 = 'I am busy. Please come later',
-    REASON3 = 'Please deliver parcel to security',
-    REASON4 = 'Type your own message';
+        ENDMEETING = 'meet_end_time',
+        REASON1 = 'I am currently away',
+        REASON2 = 'I am busy. Please come later',
+        REASON3 = 'Please deliver parcel to security',
+        REASON4 = 'Type your own message';
 
 bool VISITOR_EXISTS = false;
 

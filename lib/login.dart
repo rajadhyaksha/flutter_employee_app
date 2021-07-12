@@ -242,23 +242,11 @@ class _LoginPageState extends State<LoginPage> {
 
         // Unable to cast json here...
 
-        if (jsonResponse['Status'].toString() == "Success") {
+        if (jsonResponse['status'].toString() == "true") {
 
-          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => home()), (Route<dynamic> route) => false);
-
-          Fluttertoast.showToast(
-              msg: "verified your mobile number",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIos: 1,
-              textColor: Colors.black);
-        } else {
-          Fluttertoast.showToast(
-              msg: jsonResponse['message'],
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIos: 1,
-              textColor: Colors.black);
+          SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+          sharedPreferences.setString(CHECK_MOBILE_PASSCODE_FIRST_TIME,"set");
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => ResetPasscode()), (Route<dynamic> route) => false);
         }
       }
     } else {
