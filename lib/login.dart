@@ -97,7 +97,6 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         _isLoading = false;
       });
-      print(response.body);
     }
   }
 
@@ -150,7 +149,12 @@ class _LoginPageState extends State<LoginPage> {
                   borderSide: BorderSide(color: Colors.black45)),
               hintStyle: TextStyle(color: Colors.black45),
             ),
-          ),
+          onChanged: (String value){
+              if(value.length==10) {
+                mobileNumberCheck(value);
+              }
+          },
+            ),
           SizedBox(height: 30.0),
           TextFormField(
             controller: passwordController,
@@ -221,6 +225,50 @@ class _LoginPageState extends State<LoginPage> {
           textAlign: TextAlign.center),
     );
   }
+
+  mobileNumberCheck(String mobile) async {
+    Map data = {
+      'mobile_no': mobile,
+    };
+    var jsonResponse = null;
+    String uri = URL+ams_check_emp_number;
+    var response = await http.post(Uri.parse(uri), body: data);
+    if (response.statusCode == 200) {
+      jsonResponse = json.decode(response.body);
+      if (jsonResponse != null) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        // Unable to cast json here...
+
+        if (jsonResponse['Status'].toString() == "Success") {
+
+          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (BuildContext context) => home()), (Route<dynamic> route) => false);
+
+          Fluttertoast.showToast(
+              msg: "verified your mobile number",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIos: 1,
+              textColor: Colors.black);
+        } else {
+          Fluttertoast.showToast(
+              msg: jsonResponse['message'],
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIos: 1,
+              textColor: Colors.black);
+        }
+      }
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      print(response.body);
+    }
+  }
+
 }
 
 class ResetPasscode extends StatefulWidget {
@@ -391,7 +439,7 @@ class Resetpass extends State<ResetPasscode> {
       'type': "login",
     };
     var jsonResponse = null;
-    String uri = "https://smartknockpoc.proclivistech.com/APIs/request_otp.php";
+    String uri = URL+"request_otp.php";
     var response = await http.post(Uri.parse(uri), body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
@@ -440,7 +488,7 @@ class Resetpass extends State<ResetPasscode> {
       'msg_id': message_id,
     };
     var jsonResponse = null;
-    String uri = "https://smartknockpoc.proclivistech.com/APIs/verify_otp.php";
+    String uri = URL+verify_api;
     var response = await http.post(Uri.parse(uri), body: data);
     if (response.statusCode == 200) {
       jsonResponse = json.decode(response.body);
@@ -477,5 +525,6 @@ class Resetpass extends State<ResetPasscode> {
       print(response.body);
     }
   }
-
 }
+
+

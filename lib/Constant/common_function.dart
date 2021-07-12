@@ -33,7 +33,7 @@ class Common{
        sharedPreferences.setInt(DEPT_ID, loginVo.data.deptId);
        sharedPreferences.setString(mobile_app_enabled, loginVo.data.mobileAppEnabled);
        sharedPreferences.setString(DEPT_NAME, loginVo.data.deptName);
-       sharedPreferences.setString(LAST_SYNC_DATE,'2018--01-01');
+       sharedPreferences.setString(LAST_SYNC_DATE,'2018-01-01');
        sharedPreferences.setString(LOGIN_API_CALL_DATE,currentdate('yyyy-MM-dd'));
        sharedPreferences.setString(ROUTING_FLAG,loginVo.data.routingFlag);
        sharedPreferences.setString(EMPLOYEE_PROFILE_IMAGE,loginVo.data.profileImage);

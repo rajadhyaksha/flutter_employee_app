@@ -1,8 +1,13 @@
 
 import 'dart:core';
 
+import 'dart:ui';
+
 String LOGIN_SCREEN='/login',HOME_SCREEN='/main',SPLASH_SCREEN='/splash',
-     URL='https://smartknockpoc.proclivistech.com/APIs/';
+     URL='https://smartknockpoc.proclivistech.com/APIs/',
+     ams_check_emp_number='ams_check_emp_passcode.php',
+     verify_api = 'verify_otp.php';
+
 String mobile_no = 'mobile_no', code = 'code';
 
 String DRAWER_member_id = 'member_id',
@@ -87,6 +92,14 @@ String DEPT_NAME = 'DEPT_NAME',
     REASON4 = 'Type your own message';
 
 bool VISITOR_EXISTS = false;
+
+const kBackgroundColor = Color(0xFFF8F8F8);
+const kActiveIconColor = Color(0xFFE68342);
+const kTextColor = Color(0xFF222B45);
+const kBlueLightColor = Color(0xFFC7B8F5);
+const kBlueColor = Color(0xFF817DC0);
+const kShadowColor = Color(0xFFE6E6E6);
+const appbarColor = Color(0xFFFCAA29);
 
 
 

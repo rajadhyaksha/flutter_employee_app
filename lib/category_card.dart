@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'Constant/constants.dart';
+import 'Constant/Constant.dart';
 
 class CategoryCard extends StatelessWidget {
   final String svgSrc;

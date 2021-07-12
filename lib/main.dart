@@ -60,7 +60,9 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber[700],
+
+
+      backgroundColor: appbarColor,
        body: Container(
          child:Column(
            mainAxisAlignment: MainAxisAlignment.center,
